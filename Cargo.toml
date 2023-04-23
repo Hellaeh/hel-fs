@@ -1,0 +1,7 @@
+[package]
+name = "hel-fs"
+authors = ["Hellaeh <me@hellaeh.com>"]
+version = "0.1.0"
+edition = "2021"
+description = "FS helper"
+license = "GPL-3.0"
