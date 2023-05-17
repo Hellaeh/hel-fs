@@ -6,17 +6,13 @@ where
 	C: AsRef<[u8]>,
 {
 	let path = path.as_ref();
-	let mut temp_path = path.to_path_buf();
+	let mut temp_path = path.to_owned();
 
-	if !temp_path.set_extension("tmp") {
-		return std::fs::write(path, contents);
-	}
+	temp_path.set_extension("tmp");
 
-	if std::fs::write(&temp_path, contents).is_ok() {
-		std::fs::rename(temp_path, path)?;
-	}
+	std::fs::write(&temp_path, contents)?;
 
-	Ok(())
+	std::fs::rename(temp_path, path)
 }
 
 #[cfg(test)]
