@@ -12,7 +12,7 @@ where
 
 	std::fs::write(&temp_path, contents)?;
 
-	std::fs::rename(temp_path, path)
+	std::fs::rename(&temp_path, path).or_else(|_| std::fs::remove_file(&temp_path))
 }
 
 #[cfg(test)]
